@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { Play, Clock, Lock } from 'lucide-react';
 import { biblicalDrawings, christianSongs } from '../data/mock';
-import LeadCaptureModal from './LeadCaptureModal';
+import { useNavigate } from 'react-router-dom';
 
 const ContentCard = ({ item, type, onUnlock }) => (
   <Card className="group hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 bg-white border border-orange-100 hover:border-orange-200">
@@ -62,10 +62,10 @@ const ContentCard = ({ item, type, onUnlock }) => (
 );
 
 const ContentSection = () => {
-  const [showLeadCapture, setShowLeadCapture] = useState(false);
+  const navigate = useNavigate();
 
   const handleUnlock = () => {
-    setShowLeadCapture(true);
+    navigate('/lead-capture');
   };
 
   return (
