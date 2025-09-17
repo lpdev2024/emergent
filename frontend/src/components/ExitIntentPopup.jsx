@@ -103,7 +103,7 @@ const ExitIntentPopup = ({ isOpen, onClose }) => {
             <button
               onClick={() => {
                 onClose();
-                document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
+                window.open('/pricing', '_self');
               }}
               className="text-white/90 hover:text-white text-sm underline transition-colors"
             >
