@@ -45,7 +45,7 @@ const Header = () => {
           <div className="hidden md:flex">
             <Button 
               className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-6 py-2 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
-              onClick={() => window.open('#pricing', '_self')}
+              onClick={() => window.open('/pricing', '_self')}
             >
               Assinar Agora
             </Button>
