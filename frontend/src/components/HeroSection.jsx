@@ -56,7 +56,7 @@ const HeroSection = () => {
                 <Button 
                   size="lg"
                   className="bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-bold px-8 py-4 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl"
-                  onClick={() => setShowLeadCapture(true)}
+                  onClick={() => navigate('/lead-capture')}
                 >
                   <Play className="w-5 h-5 mr-2" />
                   {heroData.ctaText}
