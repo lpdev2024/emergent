@@ -171,18 +171,13 @@ const ContentSection = () => {
             <Button 
               size="lg"
               className="bg-white text-orange-600 hover:bg-gray-100 font-bold px-8 py-4 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
-              onClick={() => document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' })}
+              onClick={handleUnlock}
             >
-              Ver Planos e Preços
+              Quero Meu Acesso Agora
             </Button>
           </div>
         </div>
       </section>
-
-      <LeadCaptureModal 
-        isOpen={showLeadCapture} 
-        onClose={() => setShowLeadCapture(false)} 
-      />
     </>
   );
 };
