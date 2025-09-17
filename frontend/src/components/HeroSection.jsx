@@ -137,12 +137,7 @@ const HeroSection = () => {
           </div>
         </div>
       </section>
-
-      <LeadCaptureModal 
-        isOpen={showLeadCapture} 
-        onClose={() => setShowLeadCapture(false)} 
-      />
-    </>
+    </div>
   );
 };
 
