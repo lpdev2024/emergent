@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button } from './ui/button';
 import { Play, Star } from 'lucide-react';
 import { heroData } from '../data/mock';
-import LeadCaptureModal from './LeadCaptureModal';
+import { useNavigate } from 'react-router-dom';
 
 const HeroSection = () => {
-  const [showLeadCapture, setShowLeadCapture] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
