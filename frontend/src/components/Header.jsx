@@ -107,7 +107,7 @@ const Header = () => {
                   className="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 text-white font-semibold px-6 py-2 rounded-full transition-all duration-300 shadow-lg"
                   onClick={() => {
                     toggleMenu();
-                    window.open('#pricing', '_self');
+                    window.open('/pricing', '_self');
                   }}
                 >
                   Assinar Agora
