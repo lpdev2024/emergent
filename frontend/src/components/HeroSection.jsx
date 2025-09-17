@@ -103,7 +103,7 @@ const HeroSection = () => {
                   <Button
                     size="lg"
                     className="bg-white/90 backdrop-blur-sm text-orange-600 hover:bg-white hover:text-orange-700 rounded-full p-4 shadow-2xl transition-all duration-300 transform hover:scale-110"
-                    onClick={() => setShowLeadCapture(true)}
+                    onClick={() => navigate('/lead-capture')}
                   >
                     <Play className="w-8 h-8" />
                   </Button>
