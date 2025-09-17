@@ -7,11 +7,12 @@ import HeroSection from "./components/HeroSection";
 import ContentSection from "./components/ContentSection";
 import BonusSection from "./components/BonusSection";
 import TestimonialsSection from "./components/TestimonialsSection";
-import PricingSection from "./components/PricingSection";
 import FAQSection from "./components/FAQSection";
 import Footer from "./components/Footer";
 import PromoPopup from "./components/PromoPopup";
 import ExitIntentPopup from "./components/ExitIntentPopup";
+import LeadCapturePage from "./pages/LeadCapturePage";
+import PricingPage from "./pages/PricingPage";
 import axios from "axios";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -61,7 +62,6 @@ const HomePage = () => {
         <ContentSection />
         <BonusSection />
         <TestimonialsSection />
-        <PricingSection />
         <FAQSection />
       </main>
       <Footer />
@@ -87,6 +87,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/lead-capture" element={<LeadCapturePage />} />
+          <Route path="/pricing" element={<PricingPage />} />
         </Routes>
       </BrowserRouter>
     </div>
