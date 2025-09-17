@@ -8,8 +8,7 @@ const HeroSection = () => {
   const navigate = useNavigate();
 
   return (
-    <>
-      <section id="home" className="relative min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 overflow-hidden">
+    <section id="home" className="relative min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-64 h-64 bg-orange-200 rounded-full blur-3xl"></div>
