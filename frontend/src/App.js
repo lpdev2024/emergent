@@ -1,12 +1,26 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "./components/ui/sonner";
+import Header from "./components/Header";
+import HeroSection from "./components/HeroSection";
+import ContentSection from "./components/ContentSection";
+import BonusSection from "./components/BonusSection";
+import TestimonialsSection from "./components/TestimonialsSection";
+import PricingSection from "./components/PricingSection";
+import FAQSection from "./components/FAQSection";
+import Footer from "./components/Footer";
+import PromoPopup from "./components/PromoPopup";
+import ExitIntentPopup from "./components/ExitIntentPopup";
 import axios from "axios";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
-const Home = () => {
+const HomePage = () => {
+  const [showPromoPopup, setShowPromoPopup] = useState(false);
+  const [showExitPopup, setShowExitPopup] = useState(false);
+
   const helloWorldApi = async () => {
     try {
       const response = await axios.get(`${API}/`);
@@ -18,21 +32,51 @@ const Home = () => {
 
   useEffect(() => {
     helloWorldApi();
+
+    // Show promo popup after 10 seconds
+    const promoTimer = setTimeout(() => {
+      setShowPromoPopup(true);
+    }, 10000);
+
+    // Exit intent detection
+    const handleMouseLeave = (e) => {
+      if (e.clientY <= 0) {
+        setShowExitPopup(true);
+      }
+    };
+
+    document.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      clearTimeout(promoTimer);
+      document.removeEventListener('mouseleave', handleMouseLeave);
+    };
   }, []);
 
   return (
-    <div>
-      <header className="App-header">
-        <a
-          className="App-link"
-          href="https://emergent.sh"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src="https://avatars.githubusercontent.com/in/1201222?s=120&u=2686cf91179bbafbc7a71bfbc43004cf9ae1acea&v=4" />
-        </a>
-        <p className="mt-5">Building something incredible ~!</p>
-      </header>
+    <div className="min-h-screen">
+      <Header />
+      <main>
+        <HeroSection />
+        <ContentSection />
+        <BonusSection />
+        <TestimonialsSection />
+        <PricingSection />
+        <FAQSection />
+      </main>
+      <Footer />
+      
+      {/* Popups */}
+      <PromoPopup 
+        isOpen={showPromoPopup} 
+        onClose={() => setShowPromoPopup(false)} 
+      />
+      <ExitIntentPopup 
+        isOpen={showExitPopup} 
+        onClose={() => setShowExitPopup(false)} 
+      />
+      
+      <Toaster />
     </div>
   );
 };
@@ -42,9 +86,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />}>
-            <Route index element={<Home />} />
-          </Route>
+          <Route path="/" element={<HomePage />} />
         </Routes>
       </BrowserRouter>
     </div>
