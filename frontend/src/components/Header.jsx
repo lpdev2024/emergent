@@ -68,7 +68,7 @@ const Header = () => {
           <div className="md:hidden border-t border-orange-100 bg-white/95 backdrop-blur-sm">
             <div className="px-2 pt-2 pb-3 space-y-1">
               <a
-                href="#home"
+                href="/"
                 className="block px-3 py-2 text-orange-600 font-medium hover:bg-orange-50 rounded-md transition-colors"
                 onClick={toggleMenu}
               >
@@ -82,7 +82,7 @@ const Header = () => {
                 Conteúdo
               </a>
               <a
-                href="#pricing"
+                href="/pricing"
                 className="block px-3 py-2 text-gray-700 hover:text-orange-600 font-medium hover:bg-orange-50 rounded-md transition-colors"
                 onClick={toggleMenu}
               >
