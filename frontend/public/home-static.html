@@ -1506,6 +1506,21 @@
             document.getElementById(popupId).classList.remove('show');
         }
 
+        // FAQ Toggle Function
+        function toggleFAQ(trigger) {
+            const content = trigger.nextElementSibling;
+            const chevron = trigger.querySelector('.faq-chevron');
+            const isOpen = content.style.display === 'block';
+            
+            if (isOpen) {
+                content.style.display = 'none';
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.display = 'block';
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
         // Scroll animations
         const observerOptions = {
             threshold: 0.1,
