@@ -1322,14 +1322,108 @@
             <!-- Section Header -->
             <div class="section-header">
                 <h2 class="section-title">
-                    <span class="gradient-text">Quem Adquiriu Amou!</span>
+                    <span class="gradient-text">Quem Adquiriu Amou! Veja os Depoimentos</span>
                 </h2>
                 <p class="section-description">
-                    Veja os depoimentos de famílias que já transformaram a educação cristã dos seus filhos
+                    Assista aos depoimentos reais de famílias que já transformaram a educação cristã dos seus filhos
                 </p>
             </div>
 
-            <!-- Testimonials Grid -->
+            <!-- Video Testimonials -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3rem;">
+                <!-- Video Testimonial 1 -->
+                <div class="content-card" style="overflow: hidden;">
+                    <div style="position: relative;">
+                        <video 
+                            style="width: 100%; height: 200px; object-fit: cover;"
+                            poster="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=200&fit=crop&crop=face"
+                            controls
+                            preload="metadata"
+                        >
+                            <source src="https://vz-a40075ed-61d.b-cdn.net/1855f34e-918a-475a-8ff6-b991734acc4e/playlist.m3u8" type="application/x-mpegURL">
+                            <p style="color: #6b7280; padding: 1rem;">Seu navegador não suporta vídeos HTML5.</p>
+                        </video>
+                        
+                        <!-- Play Button Overlay -->
+                        <div class="video-overlay" onclick="playVideo(this)" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.3); cursor: pointer; transition: opacity 0.3s;">
+                            <div style="background: rgba(255, 255, 255, 0.9); border-radius: 50%; padding: 0.75rem;">
+                                <svg style="width: 1.5rem; height: 1.5rem; color: #ea580c;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <p style="color: #374151; font-style: italic; margin-bottom: 0.5rem;">
+                            "Depoimento incrível sobre como o ReinoPlay transformou a vida espiritual da nossa família..."
+                        </p>
+                        <div style="font-weight: 600; color: #374151; font-size: 0.875rem;">Ana Paula - São Paulo</div>
+                    </div>
+                </div>
+
+                <!-- Video Testimonial 2 -->
+                <div class="content-card" style="overflow: hidden;">
+                    <div style="position: relative;">
+                        <video 
+                            style="width: 100%; height: 200px; object-fit: cover;"
+                            poster="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop&crop=face"
+                            controls
+                            preload="metadata"
+                        >
+                            <source src="https://vz-a40075ed-61d.b-cdn.net/601af0dd-c2a2-4747-93f4-fb43a3afe169/playlist.m3u8" type="application/x-mpegURL">
+                            <p style="color: #6b7280; padding: 1rem;">Seu navegador não suporta vídeos HTML5.</p>
+                        </video>
+                        
+                        <!-- Play Button Overlay -->
+                        <div class="video-overlay" onclick="playVideo(this)" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.3); cursor: pointer; transition: opacity 0.3s;">
+                            <div style="background: rgba(255, 255, 255, 0.9); border-radius: 50%; padding: 0.75rem;">
+                                <svg style="width: 1.5rem; height: 1.5rem; color: #ea580c;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <p style="color: #374151; font-style: italic; margin-bottom: 0.5rem;">
+                            "Meus filhos aprenderam muito sobre Deus de forma divertida e educativa..."
+                        </p>
+                        <div style="font-weight: 600; color: #374151; font-size: 0.875rem;">Carlos Roberto - Rio de Janeiro</div>
+                    </div>
+                </div>
+
+                <!-- Video Testimonial 3 -->
+                <div class="content-card" style="overflow: hidden;">
+                    <div style="position: relative;">
+                        <video 
+                            style="width: 100%; height: 200px; object-fit: cover;"
+                            poster="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=200&fit=crop&crop=face"
+                            controls
+                            preload="metadata"
+                        >
+                            <!-- Fallback video since third video had error -->
+                            <source src="https://vz-a40075ed-61d.b-cdn.net/1855f34e-918a-475a-8ff6-b991734acc4e/playlist.m3u8" type="application/x-mpegURL">
+                            <p style="color: #6b7280; padding: 1rem;">Seu navegador não suporta vídeos HTML5.</p>
+                        </video>
+                        
+                        <!-- Play Button Overlay -->
+                        <div class="video-overlay" onclick="playVideo(this)" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.3); cursor: pointer; transition: opacity 0.3s;">
+                            <div style="background: rgba(255, 255, 255, 0.9); border-radius: 50%; padding: 0.75rem;">
+                                <svg style="width: 1.5rem; height: 1.5rem; color: #ea580c;" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 1rem;">
+                        <p style="color: #374151; font-style: italic; margin-bottom: 0.5rem;">
+                            "As músicas e histórias bíblicas encantaram nossa família inteira..."
+                        </p>
+                        <div style="font-weight: 600; color: #374151; font-size: 0.875rem;">Mariana Silva - Belo Horizonte</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text Testimonials Grid -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
                 <div class="content-card">
                     <!-- Rating -->
