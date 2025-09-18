@@ -594,6 +594,28 @@
             }
         }
 
+        /* Footer Links Hover */
+        footer a:hover {
+            color: #ea580c !important;
+        }
+
+        /* FAQ Hover Effects */
+        .faq-trigger:hover {
+            color: #ea580c;
+            background: #fef3e2;
+        }
+
+        /* Responsive Footer */
+        @media (max-width: 768px) {
+            footer div[style*="display: flex; flex-direction: column"] {
+                text-align: center;
+            }
+            footer div[style*="display: flex; gap: 1.5rem"] {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+        }
+
         /* Popup Styles */
         .popup-overlay {
             position: fixed;
