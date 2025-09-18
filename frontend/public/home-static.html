@@ -1054,6 +1054,99 @@
                 </div>
             </div>
             
+        </div>
+    </section>
+
+    <!-- Episodes Carousel Section -->
+    <section class="content-section" style="background: linear-gradient(to bottom, white, #fef3e2); padding: 3rem 0;">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title" style="text-align: center; margin-bottom: 1rem;">
+                    <span class="gradient-text">Episódios novos todos os dias</span>
+                </h2>
+            </div>
+
+            <!-- Episodes Carousel -->
+            <div class="carousel-container" style="position: relative; overflow: hidden; border-radius: 1rem; margin-bottom: 2rem;">
+                <div class="carousel-track" id="episodesCarousel" style="display: flex; transition: transform 0.5s ease;">
+                    <div class="carousel-slide" style="min-width: 100%; display: flex; justify-content: center;">
+                        <img src="https://media.atomicatpages.net/u/R1g90KSBgndKHioCAMFwid7qMkp1/Pictures/yJYvDG7345855.webp" alt="Episódio 1" style="width: 100%; max-width: 800px; height: auto; border-radius: 1rem; box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    <div class="carousel-slide" style="min-width: 100%; display: flex; justify-content: center;">
+                        <img src="https://media.atomicatpages.net/u/R1g90KSBgndKHioCAMFwid7qMkp1/Pictures/BNNvpY7329951.webp" alt="Episódio 2" style="width: 100%; max-width: 800px; height: auto; border-radius: 1rem; box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    <div class="carousel-slide" style="min-width: 100%; display: flex; justify-content: center;">
+                        <img src="https://media.atomicatpages.net/u/R1g90KSBgndKHioCAMFwid7qMkp1/Pictures/HlynLG7398466.webp" alt="Episódio 3" style="width: 100%; max-width: 800px; height: auto; border-radius: 1rem; box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    <div class="carousel-slide" style="min-width: 100%; display: flex; justify-content: center;">
+                        <img src="https://media.atomicatpages.net/u/R1g90KSBgndKHioCAMFwid7qMkp1/Pictures/rHXebI7431848.webp" alt="Episódio 4" style="width: 100%; max-width: 800px; height: auto; border-radius: 1rem; box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);">
+                    </div>
+                    <div class="carousel-slide" style="min-width: 100%; display: flex; justify-content: center;">
+                        <img src="https://media.atomicatpages.net/u/R1g90KSBgndKHioCAMFwid7qMkp1/Pictures/bauBEC7187185.webp" alt="Episódio 5" style="width: 100%; max-width: 800px; height: auto; border-radius: 1rem; box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);">
+                    </div>
+                </div>
+
+                <!-- Carousel Navigation -->
+                <button class="carousel-btn carousel-prev" onclick="previousSlide()" style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; width: 3rem; height: 3rem; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transition: all 0.3s;">
+                    <svg style="width: 1.5rem; height: 1.5rem; color: #ea580c;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button class="carousel-btn carousel-next" onclick="nextSlide()" style="position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; width: 3rem; height: 3rem; cursor: pointer; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transition: all 0.3s;">
+                    <svg style="width: 1.5rem; height: 1.5rem; color: #ea580c;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+
+                <!-- Carousel Dots -->
+                <div class="carousel-dots" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem;">
+                    <button class="carousel-dot active" onclick="goToSlide(0)" style="width: 0.75rem; height: 0.75rem; border-radius: 50%; border: none; cursor: pointer; transition: all 0.3s;"></button>
+                    <button class="carousel-dot" onclick="goToSlide(1)" style="width: 0.75rem; height: 0.75rem; border-radius: 50%; border: none; cursor: pointer; transition: all 0.3s;"></button>
+                    <button class="carousel-dot" onclick="goToSlide(2)" style="width: 0.75rem; height: 0.75rem; border-radius: 50%; border: none; cursor: pointer; transition: all 0.3s;"></button>
+                    <button class="carousel-dot" onclick="goToSlide(3)" style="width: 0.75rem; height: 0.75rem; border-radius: 50%; border: none; cursor: cursor; transition: all 0.3s;"></button>
+                    <button class="carousel-dot" onclick="goToSlide(4)" style="width: 0.75rem; height: 0.75rem; border-radius: 50%; border: none; cursor: pointer; transition: all 0.3s;"></button>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.25rem; color: #374151; font-weight: 600;">
+                    A maneira mais fácil e divertida de aproximar seu filho(a) de DEUS
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Watch Anywhere Section -->
+    <section class="content-section">
+        <div class="section-container">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 4rem; margin-bottom: 4rem;">
+                <!-- Assista onde quiser -->
+                <div style="text-align: center;">
+                    <h2 style="font-size: 2rem; font-weight: 700; color: #374151; margin-bottom: 1rem;">
+                        Assista onde quiser
+                    </h2>
+                    <p style="font-size: 1.125rem; color: #6b7280; margin-bottom: 2rem;">
+                        Assista em qualquer lugar, em qualquer horário ou dia que quiser!
+                    </p>
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <img src="https://media.atomicatpages.net/u/R1g90KSBgndKHioCAMFwid7qMkp1/Pictures/vxQuYY2023936.gif" alt="Assista onde quiser" style="width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);">
+                    </div>
+                </div>
+
+                <!-- Assista em qualquer dispositivo -->
+                <div style="text-align: center;">
+                    <h2 style="font-size: 2rem; font-weight: 700; color: #374151; margin-bottom: 1rem;">
+                        Assista em qualquer dispositivo
+                    </h2>
+                    <p style="font-size: 1.125rem; color: #6b7280; margin-bottom: 2rem;">
+                        Assista em Smart Tvs, Playstation, Xbox, Celulares, tablet e laptop. Em até 5 telas simultâneas!
+                    </p>
+                    <div style="max-width: 600px; margin: 0 auto;">
+                        <img src="https://media.atomicatpages.net/u/R1g90KSBgndKHioCAMFwid7qMkp1/Pictures/xCiQvo2297911.gif" alt="Assista em qualquer dispositivo" style="width: 100%; height: auto; border-radius: 1rem; box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);">
+                    </div>
+                </div>
+            </div>
+
             <!-- CTA Banner -->
             <div class="cta-banner">
                 <h3>Quanto vale a vida espiritual do seu filho(a)?</h3>
