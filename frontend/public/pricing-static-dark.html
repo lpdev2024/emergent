@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos e Preços - ReinoPlay - Versão Noturna</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #f3f4f6;
+            background: linear-gradient(to bottom, #0f0f0f, #111111);
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #374151;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .logo img {
+            height: 2.5rem;
+            width: auto;
+            filter: brightness(1.2);
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(to right, #dc2626, #b91c1c);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.3);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #f3f4f6;
+            margin-bottom: 1rem;
+        }
+
+        .hero-highlight {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #dc2626;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            background: linear-gradient(to right, #1f1f1f, #374151);
+            border: 1px solid #374151;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        .hero-description p {
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-description .main-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f3f4f6;
+        }
+
+        .hero-description .sub-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        .hero-description .final-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #f3f4f6;
+        }
+
+        .highlight-red {
+            color: #dc2626;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 75rem;
+            margin: 0 auto 4rem;
+        }
+
+        .pricing-card {
+            background: #1f1f1f;
+            border: 1px solid #374151;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+            transform: scale(1);
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px -3px rgba(220, 38, 38, 0.3);
+            border-color: #dc2626;
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #dc2626;
+            box-shadow: 0 20px 25px -5px rgba(220, 38, 38, 0.3);
+            background: linear-gradient(to bottom, #1f1f1f, #111111);
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #dc2626, #b91c1c);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.5);
+        }
+
+        .card-header {
+            text-align: center;
+            padding: 2rem 1.5rem 1rem;
+        }
+
+        .plan-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f3f4f6;
+            margin-bottom: 1rem;
+        }
+
+        .price-section {
+            margin-bottom: 1rem;
+        }
+
+        .original-price {
+            font-size: 0.875rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+        }
+
+        .main-price {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        .main-price .big-price {
+            font-size: 2.5rem;
+        }
+
+        .sub-price {
+            font-size: 0.875rem;
+            color: #9ca3af;
+            margin-top: 0.25rem;
+        }
+
+        .billing-info {
+            font-size: 0.875rem;
+            color: #9ca3af;
+        }
+
+        .card-body {
+            padding: 0 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #d1d5db;
+            margin-bottom: 0.75rem;
+        }
+
+        .check-icon {
+            width: 1rem;
+            height: 1rem;
+            color: #10b981;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 0.75rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .cta-primary {
+            background: linear-gradient(to right, #dc2626, #b91c1c);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.3);
+        }
+
+        .cta-primary:hover {
+            background: linear-gradient(to right, #b91c1c, #991b1b);
+            transform: scale(1.05);
+        }
+
+        .cta-secondary {
+            border: 2px solid #dc2626;
+            color: #dc2626;
+            background: transparent;
+        }
+
+        .cta-secondary:hover {
+            background: #dc2626;
+            color: white;
+        }
+
+        .validity-text {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 64rem;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-align: center;
+            color: #f3f4f6;
+            margin-bottom: 0.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #dc2626, #b91c1c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #9ca3af;
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            background: #1f1f1f;
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: #dc2626;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: #f3f4f6;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .faq-trigger:hover {
+            color: #dc2626;
+            background: #111111;
+        }
+
+        .faq-chevron {
+            width: 1rem;
+            height: 1rem;
+            transition: transform 0.3s;
+            color: #9ca3af;
+        }
+
+        .faq-content {
+            display: none;
+            padding: 0 1.5rem 1.5rem;
+            color: #9ca3af;
+            line-height: 1.6;
+        }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .cta-banner {
+            background: linear-gradient(to right, #dc2626, #b91c1c);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 64rem;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px -3px rgba(220, 38, 38, 0.3);
+        }
+
+        .cta-banner h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner .big-price {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-banner .sub-price {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: #dc2626;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-white:hover {
+            background: #f9fafb;
+            transform: scale(1.05);
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            text-align: center;
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .guarantee-box {
+            background: #0f1f0f;
+            border: 1px solid #166534;
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .guarantee-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #10b981;
+            margin-bottom: 0.75rem;
+        }
+
+        .guarantee-text {
+            color: #6ee7b7;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .guarantee-highlight {
+            color: #10b981;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-highlight {
+                font-size: 1.5rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+
+            .main-container {
+                padding: 2rem 1rem;
+            }
+
+            .hero-description .main-text {
+                font-size: 1.125rem;
+            }
+
+            .hero-description .sub-text {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://media.atomicatpages.net/u/R1g90KSBgndKHioCAMFwid7qMkp1/Pictures/xYoJdj5170164.png?width=1109&height=357" alt="ReinoPlay">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-badge">
+                QUANTO VALE A VIDA ESPIRITUAL E PSICOLÓGICA DO SEU FILHO(A)?
+            </div>
+            
+            <h1 class="hero-title">
+                Aposto que você respondeu:
+            </h1>
+            
+            <p class="hero-highlight">
+                "NÃO TEM PREÇO" Correto??
+            </p>
+            
+            <div class="hero-description">
+                <p class="main-text">
+                    POR ESSE MOTIVO ESTAMOS LIBERANDO OS
+                </p>
+                <p class="sub-text">
+                    ACESSOS POR UMA TAXA SIMBÓLICA
+                </p>
+                <p class="final-text">
+                    ESCOLHA O PLANO <span class="highlight-red">IDEAL PARA VOCÊ</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="pricing-grid">
+            <!-- Plano Básico -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <h3 class="plan-name">PLANO BÁSICO</h3>
+                    
+                    <div class="price-section">
+                        <div class="main-price">
+                            R$<span class="big-price">27,90</span>
+                        </div>
+                    </div>
+                    
+                    <div class="billing-info">
+                        <div>Plano Mensal</div>
+                        <div>Cancele quando quiser</div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>100 Histórias e desenhos bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Filmes bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>100 músicas bíblicas</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Histórias para leitura</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Jogos bíblicos e quizzes</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Atividades sobre a bíblia</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Episódios novos todos os dias no whatsapp</span>
+                        </li>
+                    </ul>
+
+                    <button class="cta-button cta-secondary" onclick="selectPlan('basic')">
+                        ASSINAR PLANO BÁSICO
+                    </button>
+
+                    <p class="validity-text">
+                        Oferta válida até 18/09/2025
+                    </p>
+                </div>
+            </div>
+
+            <!-- Plano Premium -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <h3 class="plan-name">PLANO PREMIUM</h3>
+                    
+                    <div class="price-section">
+                        <div class="main-price">
+                            R$<span class="big-price">47,90</span>
+                        </div>
+                    </div>
+                    
+                    <div class="billing-info">
+                        <div>Plano Mensal</div>
+                        <div>Cancele quando quiser</div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>300 Histórias e desenhos bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Filmes bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>100 músicas bíblicas</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Histórias para leitura</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Jogos bíblicos e quizzes</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Atividades sobre a bíblia</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Episódios novos todos os dias no whatsapp</span>
+                        </li>
+                    </ul>
+
+                    <button class="cta-button cta-secondary" onclick="selectPlan('premium')">
+                        ASSINAR PLANO PREMIUM
+                    </button>
+
+                    <p class="validity-text">
+                        Oferta válida até 18/09/2025
+                    </p>
+                </div>
+            </div>
+
+            <!-- Plano Premium Vitalício -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">MAIS RECOMENDADO</div>
+                
+                <div class="card-header">
+                    <h3 class="plan-name">PLANO PREMIUM VITALÍCIO</h3>
+                    
+                    <div class="price-section">
+                        <div class="original-price">
+                            De R$574,00
+                        </div>
+                        <div class="main-price">
+                            12x de R$<span class="big-price">23,43</span>
+                        </div>
+                        <div class="sub-price">
+                            Ou R$227,90 à vista
+                        </div>
+                    </div>
+                    
+                    <div class="billing-info">
+                        <div>Pagamento único e acesso para sempre</div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>300 Histórias e desenhos bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Filmes bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>100 músicas bíblicas</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Histórias para leitura</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Jogos bíblicos e quizzes</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Atividades sobre a bíblia</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Episódios novos todos os dias no whatsapp</span>
+                        </li>
+                    </ul>
+
+                    <button class="cta-button cta-primary" onclick="selectPlan('lifetime')">
+                        ESCOLHER PLANO VITALÍCIO
+                    </button>
+
+                    <p class="validity-text">
+                        Oferta válida até 18/09/2025
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="bottom-cta">
+            <div class="cta-banner">
+                <h3>Agora é a hora de agir</h3>
+                <p>Tudo isso por apenas</p>
+                <div class="big-price">12x de R$19,70</div>
+                <p class="sub-price">Ou R$197 à vista no PIX ou cartão</p>
+                
+                <a href="#" class="btn-white" onclick="selectPlan('lifetime')">
+                    QUERO APROVEITAR AGORA
+                </a>
+            </div>
+        </div>
+
+        <!-- Guarantee Section -->
+        <div class="guarantee-section">
+            <div class="guarantee-box">
+                <h4 class="guarantee-title">
+                    🛡️ Garantia de 7 Dias
+                </h4>
+                <p class="guarantee-text">
+                    A única maneira de você saber se a plataforma é para você ou não é estando por dentro. 
+                    E para tornar essa decisão ainda mais fácil, te damos total liberdade para juntar-se a nós 
+                    e caso você não aprove, nós te devolveremos seu dinheiro!
+                </p>
+                <p class="guarantee-highlight">
+                    Você não tem o que perder, não é mesmo?
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Plan Selection Function
+        function selectPlan(planType) {
+            const messages = {
+                'basic': 'Plano Básico selecionado! Redirecionando para pagamento...',
+                'premium': 'Plano Premium selecionado! Redirecionando para pagamento...',
+                'lifetime': 'Plano Premium Vitalício selecionado! Redirecionando para pagamento...'
+            };
+
+            alert(`🎉 ${messages[planType]}`);
+            console.log('Selected plan:', planType);
+        }
+
+        // Add click animations to cards
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = this.classList.contains('popular') ? 'scale(1.02)' : 'scale(1.02)';
+                setTimeout(() => {
+                    this.style.transform = this.classList.contains('popular') ? 'scale(1.05)' : 'scale(1)';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
