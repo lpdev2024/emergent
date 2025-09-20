@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planos e Preços - ReinoPlay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #374151;
+            background: linear-gradient(to bottom, #f9fafb, white);
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #fed7aa;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 4rem;
+        }
+
+        .logo img {
+            height: 2.5rem;
+            width: auto;
+        }
+
+        /* Main Content */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(to right, #f97316, #f59e0b);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+
+        .hero-highlight {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #ea580c;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            background: linear-gradient(to right, #fed7aa, #fbbf24);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid #fdba74;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        .hero-description p {
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-description .main-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .hero-description .sub-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #ea580c;
+        }
+
+        .hero-description .final-text {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .highlight-orange {
+            color: #ea580c;
+        }
+
+        /* Pricing Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 75rem;
+            margin: 0 auto 4rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s;
+            position: relative;
+            transform: scale(1);
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.popular {
+            border: 2px solid #fb923c;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(to bottom, #fef3e2, white);
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(to right, #f97316, #f59e0b);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            text-align: center;
+            padding: 2rem 1.5rem 1rem;
+        }
+
+        .plan-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #374151;
+            margin-bottom: 1rem;
+        }
+
+        .price-section {
+            margin-bottom: 1rem;
+        }
+
+        .original-price {
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-decoration: line-through;
+        }
+
+        .main-price {
+            font-size: 1.875rem;
+            font-weight: 700;
+            color: #ea580c;
+        }
+
+        .main-price .big-price {
+            font-size: 2.5rem;
+        }
+
+        .sub-price {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        .billing-info {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+
+        .card-body {
+            padding: 0 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list li {
+            display: flex;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #374151;
+            margin-bottom: 0.75rem;
+        }
+
+        .check-icon {
+            width: 1rem;
+            height: 1rem;
+            color: #10b981;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .cta-button {
+            width: 100%;
+            padding: 0.75rem;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 1rem;
+        }
+
+        .cta-primary {
+            background: linear-gradient(to right, #f97316, #f59e0b);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-primary:hover {
+            background: linear-gradient(to right, #ea580c, #d97706);
+            transform: scale(1.05);
+        }
+
+        .cta-secondary {
+            border: 2px solid #f97316;
+            color: #ea580c;
+            background: transparent;
+        }
+
+        .cta-secondary:hover {
+            background: #f97316;
+            color: white;
+        }
+
+        .validity-text {
+            font-size: 0.75rem;
+            color: #6b7280;
+            text-align: center;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 64rem;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: 700;
+            text-align: center;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #ea580c, #d97706);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid #fed7aa;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: border-color 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: #fdba74;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            text-align: left;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            font-weight: 600;
+            color: #374151;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        .faq-trigger:hover {
+            color: #ea580c;
+            background: #fef3e2;
+        }
+
+        .faq-chevron {
+            width: 1rem;
+            height: 1rem;
+            transition: transform 0.3s;
+        }
+
+        .faq-content {
+            display: none;
+            padding: 0 1.5rem 1.5rem;
+            color: #6b7280;
+            line-height: 1.6;
+        }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .cta-banner {
+            background: linear-gradient(to right, #f97316, #f59e0b);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        .cta-banner h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner p {
+            margin-bottom: 1rem;
+        }
+
+        .cta-banner .big-price {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-banner .sub-price {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: #ea580c;
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.125rem;
+            transition: all 0.3s;
+            display: inline-block;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-white:hover {
+            background: #f9fafb;
+            transform: scale(1.05);
+        }
+
+        /* Guarantee Section */
+        .guarantee-section {
+            text-align: center;
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        .guarantee-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .guarantee-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 0.75rem;
+        }
+
+        .guarantee-text {
+            color: #15803d;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .guarantee-highlight {
+            color: #166534;
+            font-weight: 600;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-highlight {
+                font-size: 1.5rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+
+            .main-container {
+                padding: 2rem 1rem;
+            }
+
+            .hero-description .main-text {
+                font-size: 1.125rem;
+            }
+
+            .hero-description .sub-text {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://media.atomicatpages.net/u/R1g90KSBgndKHioCAMFwid7qMkp1/Pictures/xYoJdj5170164.png?width=1109&height=357" alt="ReinoPlay">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-badge">
+                QUANTO VALE A VIDA ESPIRITUAL E PSICOLÓGICA DO SEU FILHO(A)?
+            </div>
+            
+            <h1 class="hero-title">
+                Aposto que você respondeu:
+            </h1>
+            
+            <p class="hero-highlight">
+                "NÃO TEM PREÇO" Correto??
+            </p>
+            
+            <div class="hero-description">
+                <p class="main-text">
+                    POR ESSE MOTIVO ESTAMOS LIBERANDO OS
+                </p>
+                <p class="sub-text">
+                    ACESSOS POR UMA TAXA SIMBÓLICA
+                </p>
+                <p class="final-text">
+                    ESCOLHA O PLANO <span class="highlight-orange">IDEAL PARA VOCÊ</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="pricing-grid">
+            <!-- Plano Básico -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <h3 class="plan-name">PLANO BÁSICO</h3>
+                    
+                    <div class="price-section">
+                        <div class="main-price">
+                            R$<span class="big-price">27,90</span>
+                        </div>
+                    </div>
+                    
+                    <div class="billing-info">
+                        <div>Plano Mensal</div>
+                        <div>Cancele quando quiser</div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>100 Histórias e desenhos bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Filmes bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>100 músicas bíblicas</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Histórias para leitura</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Jogos bíblicos e quizzes</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Atividades sobre a bíblia</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Episódios novos todos os dias no whatsapp</span>
+                        </li>
+                    </ul>
+
+                    <button class="cta-button cta-secondary" onclick="selectPlan('basic')">
+                        ASSINAR PLANO BÁSICO
+                    </button>
+
+                    <p class="validity-text">
+                        Oferta válida até 18/09/2025
+                    </p>
+                </div>
+            </div>
+
+            <!-- Plano Premium -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <h3 class="plan-name">PLANO PREMIUM</h3>
+                    
+                    <div class="price-section">
+                        <div class="main-price">
+                            R$<span class="big-price">47,90</span>
+                        </div>
+                    </div>
+                    
+                    <div class="billing-info">
+                        <div>Plano Mensal</div>
+                        <div>Cancele quando quiser</div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>300 Histórias e desenhos bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Filmes bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>100 músicas bíblicas</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Histórias para leitura</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Jogos bíblicos e quizzes</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Atividades sobre a bíblia</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Episódios novos todos os dias no whatsapp</span>
+                        </li>
+                    </ul>
+
+                    <button class="cta-button cta-secondary" onclick="selectPlan('premium')">
+                        ASSINAR PLANO PREMIUM
+                    </button>
+
+                    <p class="validity-text">
+                        Oferta válida até 18/09/2025
+                    </p>
+                </div>
+            </div>
+
+            <!-- Plano Premium Vitalício -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">MAIS RECOMENDADO</div>
+                
+                <div class="card-header">
+                    <h3 class="plan-name">PLANO PREMIUM VITALÍCIO</h3>
+                    
+                    <div class="price-section">
+                        <div class="original-price">
+                            De R$574,00
+                        </div>
+                        <div class="main-price">
+                            12x de R$<span class="big-price">23,43</span>
+                        </div>
+                        <div class="sub-price">
+                            Ou R$227,90 à vista
+                        </div>
+                    </div>
+                    
+                    <div class="billing-info">
+                        <div>Pagamento único e acesso para sempre</div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <ul class="features-list">
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>300 Histórias e desenhos bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Filmes bíblicos</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>100 músicas bíblicas</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Histórias para leitura</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Jogos bíblicos e quizzes</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Atividades sobre a bíblia</span>
+                        </li>
+                        <li>
+                            <svg class="check-icon" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Episódios novos todos os dias no whatsapp</span>
+                        </li>
+                    </ul>
+
+                    <button class="cta-button cta-primary" onclick="selectPlan('lifetime')">
+                        ESCOLHER PLANO VITALÍCIO
+                    </button>
+
+                    <p class="validity-text">
+                        Oferta válida até 18/09/2025
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2 class="section-title">
+                <span class="gradient-text">Perguntas Frequentes</span>
+            </h2>
+            <p class="section-description">
+                Tire suas dúvidas sobre nossa plataforma cristã de streaming
+            </p>
+
+            <div>
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFAQ(this)">
+                        O que é o ReinoPlay?
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-content">
+                        O ReinoPlay é um serviço de streaming que oferece uma ampla variedade de filmes cristãos e historinhas bíblicas.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFAQ(this)">
+                        Posso baixar vídeos para assistir offline?
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-content">
+                        Sim, agora você pode baixar nos dispositivos! Baixe seus episódios favoritos enquanto estiver no WIFI e assista-os em qualquer lugar.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFAQ(this)">
+                        Para quais idades o ReinoPlay é voltado?
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-content">
+                        Nossos programas são voltados para crianças de 1 a 15 anos.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFAQ(this)">
+                        Como será disponibilizado o meu acesso à plataforma?
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-content">
+                        Após a confirmação do pagamento, o acesso à plataforma será imediatamente liberado. Você receberá um e-mail contendo o link de acesso para baixar o aplicativo, além de seu login e senha exclusivos.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFAQ(this)">
+                        Como faço para cancelar?
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-content">
+                        O ReinoPlay é flexível. Não há contratos nem compromissos. Você pode cancelar a sua conta na internet com apenas dois cliques. Não há taxa de cancelamento – você pode começar ou encerrar a sua assinatura a qualquer momento.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFAQ(this)">
+                        Onde posso assistir?
+                        <svg class="faq-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="faq-content">
+                        Assista onde quiser, quando quiser. Faça login com sua conta para começar a assistir no computador ou em qualquer aparelho como Smart TVs, smartphones, tablets, aparelhos de streaming e videogames.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="bottom-cta">
+            <div class="cta-banner">
+                <h3>Agora é a hora de agir</h3>
+                <p>Tudo isso por apenas</p>
+                <div class="big-price">12x de R$19,70</div>
+                <p class="sub-price">Ou R$197 à vista no PIX ou cartão</p>
+                
+                <a href="#" class="btn-white" onclick="selectPlan('lifetime')">
+                    QUERO APROVEITAR AGORA
+                </a>
+            </div>
+        </div>
+
+        <!-- Guarantee Section -->
+        <div class="guarantee-section">
+            <div class="guarantee-box">
+                <h4 class="guarantee-title">
+                    🛡️ Garantia de 7 Dias
+                </h4>
+                <p class="guarantee-text">
+                    A única maneira de você saber se a plataforma é para você ou não é estando por dentro. 
+                    E para tornar essa decisão ainda mais fácil, te damos total liberdade para juntar-se a nós 
+                    e caso você não aprove, nós te devolveremos seu dinheiro!
+                </p>
+                <p class="guarantee-highlight">
+                    Você não tem o que perder, não é mesmo?
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Toggle Function
+        function toggleFAQ(trigger) {
+            const content = trigger.nextElementSibling;
+            const chevron = trigger.querySelector('.faq-chevron');
+            const isOpen = content.style.display === 'block';
+            
+            if (isOpen) {
+                content.style.display = 'none';
+                chevron.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.display = 'block';
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Plan Selection Function
+        function selectPlan(planType) {
+            // Show success message
+            const messages = {
+                'basic': 'Plano Básico selecionado! Redirecionando para pagamento...',
+                'premium': 'Plano Premium selecionado! Redirecionando para pagamento...',
+                'lifetime': 'Plano Premium Vitalício selecionado! Redirecionando para pagamento...'
+            };
+
+            alert(`🎉 ${messages[planType]}`);
+            
+            // Here you would typically redirect to payment processor
+            console.log('Selected plan:', planType);
+        }
+
+        // Add click animations to cards
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = this.classList.contains('popular') ? 'scale(1.02)' : 'scale(1.02)';
+                setTimeout(() => {
+                    this.style.transform = this.classList.contains('popular') ? 'scale(1.05)' : 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply scroll animation to pricing cards
+        document.querySelectorAll('.pricing-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
